@@ -15,6 +15,7 @@ Group:		Development/Python
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	libgtk+2-devel
 BuildRequires:	python-devel pygtk2.0-devel python-gobject-devel
+BuildRequires:	lua-devel
 
 %description
 keybinder is a library for registering global keyboard shortcuts. Keybinder works
