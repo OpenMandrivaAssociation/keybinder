@@ -29,7 +29,6 @@ The library contains:
 %package -n %libname
 Group:		Development/Python
 Summary:	%{name} library package
-Requires:	%{name} >= %{version}
 
 %description -n %libname
 %summary.
@@ -47,7 +46,7 @@ This package contains header files needed when building applications based on
 %package -n python-%{srcname}
 Group:		Development/Python
 Summary:	%{name} python bindings
-Requires:	%{name} = %{version}
+Requires:	%{libname} = %{version}
 Requires:	pygtk2.0 python-gobject
 
 %description -n python-%{srcname}
