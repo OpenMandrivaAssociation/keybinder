@@ -7,7 +7,7 @@
 Summary:	A library for registering global keyboard shortcuts
 Name:		keybinder
 Version:	0.2.2
-Release:	2
+Release:	3
 Url:		http://kaizer.se/wiki/keybinder/
 Source0:	http://kaizer.se/publicfiles/keybinder/%{name}-%{version}.tar.gz
 License:	GPLv2
