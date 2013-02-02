@@ -1,24 +1,25 @@
-%define srcname keybinder
-
 %define major 0
-%define libname %mklibname %srcname %major
-%define develname %mklibname -d %srcname
+%define gmajor 0.0
+%define libname %mklibname %{name} %{major}
+%define develname %mklibname %{name} -d
+%define girname %mklibname %{name}-gir %{gmajor}
 
 Summary:	A library for registering global keyboard shortcuts
 Name:		keybinder
-Version:	0.2.2
-Release:	3
+Version:	0.3.0
+Release:	1
 Url:		http://kaizer.se/wiki/keybinder/
 Source0:	http://kaizer.se/publicfiles/keybinder/%{name}-%{version}.tar.gz
 License:	GPLv2
 Group:		Development/Python
 
 BuildRequires:	pkgconfig(gdk-2.0)
-BuildRequires:	python-devel 
-BuildRequires:	pkgconfig(python2) 
+BuildRequires:	python-devel
+BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(pygobject-2.0)
 BuildRequires:	pkgconfig(lua)
+BuildRequires:	pkgconfig(gobject-introspection-1.0)
 
 %description
 Keybinder is a library for registering global keyboard shortcuts. 
@@ -32,37 +33,50 @@ The library contains:
 - An examples directory with programs in C, Lua, 
 Python and Vala.
 
-%package -n %libname
+%package -n %{libname}
 Group:		Development/Python
-Summary:		Library package
+Summary:	Library package
 
-%description -n %libname
+%description -n %{libname}
 %summary.
 
-%package -n %develname
+%package -n %{develname}
 Group:		Development/Python
-Summary:		Development files
+Summary:	Development files
 Provides:	%{name}-devel = %{version}-%{release}
-Requires:	%{libname} = %{version}
+Requires:	%{libname} = %{EVRD}
 
-%description -n %develname
+%description -n %{develname}
 This package contains header files needed when building 
 applications based on %{name}.
 
-%package -n python-%{srcname}
-Group:		Development/Python
-Summary:		Python bindings
-Requires:	%{libname} = %{version}
-Requires:	pygtk2.0 python-gobject
+%package -n %{girname}
+Summary:	GObject Introspection interface description for %{name}
+Group:		System/Libraries
+Requires:	%{libname} = %{version}-%{release}
 
-%description -n python-%{srcname}
+%description -n %{girname}
+GObject Introspection interface description for %{name}.
+
+%package -n python-%{name}
+Group:		Development/Python
+Summary:	Python bindings
+Requires:	%{libname} = %{EVRD}
+Requires:	pygtk2.0
+Requires:	python-gobject
+
+%description -n python-%{name}
 This package contains python bindings for keybinder.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
-%configure2_5x --disable-static --enable-python
+%configure2_5x \
+	--disable-static \
+	--enable-python \
+	--enable-introspection=yes
+
 %make
 
 %install
@@ -75,18 +89,17 @@ find %{buildroot} -name '*.la' | xargs rm -f
 %doc NEWS AUTHORS README
 
 %files -n %libname
-%doc  NEWS AUTHORS README
 %{_libdir}/libkeybinder.so.%{major}*
 
-%files -n %develname
+%files -n %{develname}
 %doc NEWS AUTHORS README
 %{_includedir}/keybinder.h
 %{_libdir}/lua/*/keybinder.so
 %{_libdir}/libkeybinder.so
 %{_libdir}/pkgconfig/keybinder.pc
 
+%files -n %{girname}
+%{_libdir}/girepository-1.0/Keybinder-%{gmajor}.typelib
+
 %files -n python-%{name}
-%doc NEWS AUTHORS README
 %{python_sitearch}/%{name}
-
-
