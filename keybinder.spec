@@ -15,7 +15,7 @@ Group:		Development/Python
 
 BuildRequires:	pkgconfig(gdk-2.0)
 BuildRequires:	python-devel
-BuildRequires:	pkgconfig(python2)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(pygobject-2.0)
 BuildRequires:	pkgconfig(lua)
