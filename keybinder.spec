@@ -98,6 +98,8 @@ find %{buildroot} -name '*.la' | xargs rm -f
 %{_libdir}/lua/*/keybinder.so
 %{_libdir}/libkeybinder.so
 %{_libdir}/pkgconfig/keybinder.pc
+%{_datadir}/gir-1.0/*.gir
+%{_datadir}/gtk-doc/html/keybinder
 
 %files -n %{girname}
 %{_libdir}/girepository-1.0/Keybinder-%{gmajor}.typelib
