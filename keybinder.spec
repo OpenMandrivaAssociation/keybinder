@@ -77,7 +77,7 @@ This package contains python bindings for keybinder.
 	--enable-python \
 	--enable-introspection=yes
 
-%make
+%make LIBS='-lpython2.7'
 
 %install
 %makeinstall_std
