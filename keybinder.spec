@@ -3,6 +3,7 @@
 %define libname %mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
 %define girname %mklibname %{name}-gir %{gmajor}
+%define _disable_ld_no_undefined 1
 
 Summary:	A library for registering global keyboard shortcuts
 Name:		keybinder
@@ -77,7 +78,7 @@ This package contains python bindings for keybinder.
 	--enable-python \
 	--enable-introspection=yes
 
-%make LIBS='-lpython2.7'
+%make
 
 %install
 %makeinstall_std
