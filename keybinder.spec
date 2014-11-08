@@ -8,7 +8,7 @@
 Summary:	A library for registering global keyboard shortcuts
 Name:		keybinder
 Version:	0.3.0
-Release:	2
+Release:	4
 Url:		http://kaizer.se/wiki/keybinder/
 Source0:	http://kaizer.se/publicfiles/keybinder/%{name}-%{version}.tar.gz
 License:	GPLv2
@@ -16,7 +16,7 @@ Group:		Development/Python
 
 BuildRequires:	pkgconfig(gdk-2.0)
 BuildRequires:	python-devel
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(pygobject-2.0)
 BuildRequires:	pkgconfig(lua)
@@ -73,7 +73,9 @@ This package contains python bindings for keybinder.
 %setup -q
 
 %build
-%configure2_5x \
+export PYTHON=%{__python2}
+
+%configure \
 	--disable-static \
 	--enable-python \
 	--enable-introspection=yes
@@ -105,4 +107,4 @@ find %{buildroot} -name '*.la' | xargs rm -f
 %{_libdir}/girepository-1.0/Keybinder-%{gmajor}.typelib
 
 %files -n python-%{name}
-%{python_sitearch}/%{name}
+%{python2_sitearch}/%{name}
