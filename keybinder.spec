@@ -76,7 +76,7 @@ export PYTHON=%{__python2}
 
 %configure \
 	--disable-static \
-	--enable-python \
+	--disable-python \
 	--enable-introspection=yes
 
 %make_build
