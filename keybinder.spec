@@ -58,15 +58,15 @@ Requires:	%{libname} = %{version}-%{release}
 %description -n %{girname}
 GObject Introspection interface description for %{name}.
 
-%package -n python-%{name}
-Group:		Development/Python
-Summary:	Python bindings
-Requires:	%{libname} = %{EVRD}
-Requires:	pygtk2.0
-Requires:	python-gobject
-
-%description -n python-%{name}
-This package contains python bindings for keybinder.
+#package -n python-%{name}
+#Group:		Development/Python
+#Summary:	Python bindings
+#Requires:	%{libname} = %{EVRD}
+#Requires:	pygtk2.0
+#Requires:	python-gobject
+#
+#description -n python-%{name}
+#This package contains python bindings for keybinder.
 
 %prep
 %setup -q
@@ -105,5 +105,5 @@ find %{buildroot} -name '*.la' | xargs rm -f
 %files -n %{girname}
 %{_libdir}/girepository-1.0/Keybinder-%{gmajor}.typelib
 
-%files -n python-%{name}
-%{python2_sitearch}/%{name}
+#files -n python-%{name}
+#{python2_sitearch}/%{name}
