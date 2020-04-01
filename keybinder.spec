@@ -8,7 +8,7 @@
 Summary:	A library for registering global keyboard shortcuts
 Name:		keybinder
 Version:	0.3.0
-Release:	5
+Release:	6
 Url:		http://kaizer.se/wiki/keybinder/
 Source0:	http://kaizer.se/publicfiles/keybinder/%{name}-%{version}.tar.gz
 License:	GPLv2
@@ -17,7 +17,6 @@ Group:		Development/Python
 BuildRequires:	pkgconfig(gdk-2.0)
 BuildRequires:	python-devel
 BuildRequires:	pkgconfig(python2)
-BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(pygobject-2.0)
 BuildRequires:	pkgconfig(lua) < 5.2
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
@@ -59,15 +58,15 @@ Requires:	%{libname} = %{version}-%{release}
 %description -n %{girname}
 GObject Introspection interface description for %{name}.
 
-%package -n python-%{name}
-Group:		Development/Python
-Summary:	Python bindings
-Requires:	%{libname} = %{EVRD}
-Requires:	pygtk2.0
-Requires:	python-gobject
-
-%description -n python-%{name}
-This package contains python bindings for keybinder.
+#package -n python-%{name}
+#Group:		Development/Python
+#Summary:	Python bindings
+#Requires:	%{libname} = %{EVRD}
+#Requires:	pygtk2.0
+#Requires:	python-gobject
+#
+#description -n python-%{name}
+#This package contains python bindings for keybinder.
 
 %prep
 %setup -q
@@ -77,13 +76,13 @@ export PYTHON=%{__python2}
 
 %configure \
 	--disable-static \
-	--enable-python \
+	--disable-python \
 	--enable-introspection=yes
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 # don't ship .la
 find %{buildroot} -name '*.la' | xargs rm -f
@@ -106,5 +105,5 @@ find %{buildroot} -name '*.la' | xargs rm -f
 %files -n %{girname}
 %{_libdir}/girepository-1.0/Keybinder-%{gmajor}.typelib
 
-%files -n python-%{name}
-%{python2_sitearch}/%{name}
+#files -n python-%{name}
+#{python2_sitearch}/%{name}
