@@ -14,6 +14,11 @@ Source0:	http://kaizer.se/publicfiles/keybinder/%{name}-%{version}.tar.gz
 License:	GPLv2
 Group:		Development/Python
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(gdk-2.0)
 BuildRequires:	python-devel
 BuildRequires:	pkgconfig(python2)
